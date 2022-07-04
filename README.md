@@ -1,2 +1,2 @@
 # Keeper-App
-Keeper App Project focuses on the developer's ability to use and incorporate Reach and Sass
+Keeper App Project focuses on my ability to use and incorporate Reach and Sass
