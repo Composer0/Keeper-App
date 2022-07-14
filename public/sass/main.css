@@ -53,7 +53,6 @@ header h1 {
 .note h1 {
   font-size: 1.1em;
   margin-bottom: 6px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
 .note p {
