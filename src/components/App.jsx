@@ -1,33 +1,53 @@
+import React, {useState} from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import notes from "../notes.js";
-import CreateNote from "./CreateNote";
-// import Note from "./Note";
+import Note from "./Note";
+import CreateArea from "./CreateArea";
+
 
 function App() {
-    return (
-        <div>
-            <Header />
-            {notes.map(CreateNote)}
-            <Footer />
-        </div>
-    )
+
+  const[message, setMessage] = useState([]);
+
+
+  function addNote(note) {
+
+    setMessage(prevValues => {
+      return [...prevValues, note];
+    })
+  }
+
+  function deleteNote(id) {
+    setMessage((prevNote) => {
+      return prevNote.filter((message, index) => {
+        return index !== id;
+      })
+    })
+  }
+
+  
+
+//All I needed to do differently here was to reference the item in the object for title and content in order to render one note instead of two.
+  return (
+    <div>
+      <Header />
+      <CreateArea 
+        onAdd={addNote}
+      />
+      <ul>
+        {message.map((keeperMessages, index) => 
+      <Note 
+        key={index} 
+        id={index} 
+        title={keeperMessages.title} 
+        content={keeperMessages.content} 
+        onChecked={deleteNote}
+        />
+        )}
+      </ul>
+      <Footer />
+    </div>
+  );
 }
 
-// Alternative... While this works. It takes what could have been a library component away. It is great to see an ES6 arrow function used in this way for the experience, but I ultimately disagree with its current inclusion as using the file CreateNote brings clarity to what is occuring in the code... I am leaving my variation intact for now.
-// function App() {
-//     return (
-//         <div>
-//             <Header />
-//             {notes.map((message) => 
-//             <Note
-//                 key={message.key}
-//                 title={message.title}
-//                 content={message.content}
-//                 />)}
-//             <Footer />
-//         </div>
-//     )
-// }
-
-export default App
+export default App;
