@@ -1,4 +1,7 @@
 import React, {useState} from "react";
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Fab from "@material-ui/core/Fab";
+import Zoom from '@material-ui/core/Zoom';
 
 
 function CreateArea(props) {
@@ -83,6 +86,10 @@ function submitNote(event) {
           value={note.title} 
           onChange={handleChange}
         />
+{/* create a class to hide input */}
+
+{/* create boolean using in to render input upon textarea focus. On focus have textarea increase from 1 to 3 rows. */}
+
         <textarea 
           name="content" 
           required
@@ -95,10 +102,13 @@ function submitNote(event) {
       {/* //note container */}
 
       {/* //button for note */}
-        <button
+      <Zoom in={true}>
+        <Fab
           onClick={submitNote}
-          >Add
-          </button>
+          ><AddCircleIcon />
+          </Fab>
+      </Zoom>
+        
       {/* //button for note */}
 
       </form>
