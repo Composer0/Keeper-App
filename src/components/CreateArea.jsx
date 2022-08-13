@@ -4,7 +4,10 @@ import Fab from "@material-ui/core/Fab";
 import Zoom from '@material-ui/core/Zoom';
 
 
+
 function CreateArea(props) {
+
+  const [isExpanded, setExpanded] = useState(false);
   // const[titleText, setTitleText] = useState("");
   // const[contentText, setContentText] = useState("");
   const[note, setNote] = useState({
@@ -60,7 +63,6 @@ function submitNote(event) {
     console.log(note_serialized)
     console.log(note_deSerialized)
   }
-  
   //  Original idea was to create 2 separate handle and const. I learned that you can create an object through the useState. That changes things immensely.
   // function handleTitleChange(event) {
     //   const newTitleValue = event.target.value;
@@ -72,37 +74,42 @@ function submitNote(event) {
   //   setNote.content(newContentValue);
   // }
     //Allows Text to be typed into the Title and content areas for the New Note.
-
+  function expand() {
+    setExpanded(true);
+  }
 
   return (
     <div>
       <form className="create-note">
       {/* //note container */}
-        <input 
+
+{/* create a class to hide input */}
+      {isExpanded && 
+        (<input 
           name="title" 
           required
           placeholder="Title" 
           type="title"
           value={note.title} 
           onChange={handleChange}
-        />
-{/* create a class to hide input */}
-
+        /> 
+      )}
 {/* create boolean using in to render input upon textarea focus. On focus have textarea increase from 1 to 3 rows. */}
 
         <textarea 
           name="content" 
+          onClick={expand}
           required
           placeholder="Take a note..." 
           type="content"
-          rows="3" 
+          rows={isExpanded ? 3 : 1 }
           value={note.content}
           onChange={handleChange}
         />
       {/* //note container */}
 
       {/* //button for note */}
-      <Zoom in={true}>
+      <Zoom in={isExpanded}>
         <Fab
           onClick={submitNote}
           ><AddCircleIcon />

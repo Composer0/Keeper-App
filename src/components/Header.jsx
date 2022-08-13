@@ -1,9 +1,11 @@
 import React from "react";
+import HighlightIcon from '@material-ui/icons/Highlight';
+
 
 function Header() {
   return (
     <header>
-      <h1>Orion's Keeper App</h1>
+      <h1><HighlightIcon />Orion's Keeper App<HighlightIcon /></h1>
     </header>
   );
 }
